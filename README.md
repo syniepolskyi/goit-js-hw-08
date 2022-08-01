@@ -1,7 +1,7 @@
 # goit-js-hw-08
 ## Стартові файли
-Закачати [стартові файли](https://downgit.github.io/#/home?url=https://github.com/goitacademy/javascript-homework/tree/main/v2/08/src)
-Всі ці файли розмістити в директорію `src` [проєкту parcel](https://github.com/goitacademy/parcel-project-template)
+- Закачати [стартові файли](https://downgit.github.io/#/home?url=https://github.com/goitacademy/javascript-homework/tree/main/v2/08/src). 
+- Файли мають бути розміщені в директорії `src` [шаблону для побудови проєктів parcel](https://github.com/goitacademy/parcel-project-template)
 
 ## Завдання 1 - бібліотека SimpleLightbox
 Виконуй це завдання у файлах `01-gallery.html` і `01-gallery.js`. Розбий його на декілька підзавдань:
