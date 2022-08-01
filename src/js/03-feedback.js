@@ -44,11 +44,17 @@ function validate(form){
     return allFilled;
 }
 
+function validateElem(elem){
+    const isEmpty = (elem.value.trim() === '');
+    elem.classList.toggle('error',isEmpty);
+    return !isEmpty;
+}
+
 function onInput(ev){
     //console.log(ev.target.name, ev.target.value);
     const storageData = readStorage();
     storageData[ev.target.name] = ev.target.value;
-    if(validate(ev.target.parentNode.parentNode)){
+    if(validateElem(ev.target)){
       localStorage.setItem("feedback-form-state", JSON.stringify(storageData));
     }
 }
