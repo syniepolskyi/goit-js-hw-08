@@ -13,19 +13,24 @@ function readStorage(){
   if(storageRawData){
       try{
           const parsedData = JSON.parse(storageRawData);
-          console.log(`localStorage["feedback-form-state"]`, parsedData);
           Object.keys(storageData).forEach((key) =>{
-              const elem = document.querySelector(`[name="${key}"]`);
               storageData[key] = parsedData[key];
-              if(elem){
-                  elem.value = parsedData[key];
-              }
           });
       } catch(exc){
           console.warn(exc);
       }
   }
   return storageData;
+}
+
+function writeStorageValues(){
+  const storageData = readStorage();
+  Object.keys(storageData).forEach((key) =>{
+      const elem = document.querySelector(`[name="${key}"]`);
+      if(elem){
+          elem.value = parsedData[key];
+      }
+  });
 }
 
 function validate(form){
@@ -47,6 +52,8 @@ function onInput(ev){
       localStorage.setItem("feedback-form-state", JSON.stringify(storageData));
     }
 }
+
+writeStorageValues();
 
 form.addEventListener("input", throttle(onInput, 500));
 form.addEventListener("submit", (ev) => {
