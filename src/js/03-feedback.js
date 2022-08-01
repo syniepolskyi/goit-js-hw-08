@@ -28,7 +28,7 @@ function writeStorageValues(){
   Object.keys(storageData).forEach((key) =>{
       const elem = document.querySelector(`[name="${key}"]`);
       if(elem){
-          elem.value = parsedData[key];
+          elem.value = storageData[key];
       }
   });
 }
