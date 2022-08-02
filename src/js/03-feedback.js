@@ -33,9 +33,8 @@ function writeStorageValues(){
   });
 }
 
-function validateElem(elem){
+function validateEmpty(elem){
     const isEmpty = (elem.value.trim() === '');
-    elem.classList.toggle('error',isEmpty);
     const elemChildren = elem.parentNode.children;
     if(isEmpty){
       const elemMsg = document.createElement("SPAN");
@@ -54,7 +53,7 @@ function validate(form){
     const elements = form.elements;
     const storageData = readStorage();
     const allFilled = Object.keys(storageData).reduce((acc, key) => {
-      const isEmpty = validateElem(elements[key]);
+      const isEmpty = !validateEmpty(elements[key]);
       return ( acc && (!isEmpty) );
     }, true);
     return allFilled;
