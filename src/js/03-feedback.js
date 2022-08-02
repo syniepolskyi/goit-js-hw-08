@@ -33,21 +33,31 @@ function writeStorageValues(){
   });
 }
 
+function validateElem(elem){
+    const isEmpty = (elem.value.trim() === '');
+    elem.classList.toggle('error',isEmpty);
+    const elemChildren = elem.parentNode.children;
+    if(isEmpty){
+      const elemMsg = document.createElement("SPAN");
+      elemMsg.classList.add('error-msg');
+      elemMsg.style.fontSize = '11px';
+      elemMsg.textContent = 'поле не можу бути порожнім';
+      elem.parentNode.append(elemMsg);
+    } else if( elemChildren.length > 1 
+              && elemChildren[1].classList.contains("error-msg") ){
+      elemChildren[1].remove();
+    }
+    return !isEmpty;
+}
+
 function validate(form){
     const elements = form.elements;
     const storageData = readStorage();
     const allFilled = Object.keys(storageData).reduce((acc, key) => {
-      const isEmpty = (elements[key].value.trim() === '');
-      elements[key].classList.toggle('error',isEmpty);
+      const isEmpty = validateElem(elements[key]);
       return ( acc && (!isEmpty) );
     }, true);
     return allFilled;
-}
-
-function validateElem(elem){
-    const isEmpty = (elem.value.trim() === '');
-    elem.classList.toggle('error',isEmpty);
-    return !isEmpty;
 }
 
 function onInput(ev){
@@ -68,6 +78,7 @@ form.addEventListener("submit", (ev) => {
     if(!validate(ev.currentTarget)){
       return ;
     }
+    alert("Local storage item was removed")
     console.log(storageData);
     localStorage.removeItem("feedback-form-state");
     console.log('localStorage["feedback-form-state"] was removed')
