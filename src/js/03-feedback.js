@@ -36,15 +36,16 @@ function writeStorageValues(){
 function validateEmpty(elem){
     const isEmpty = (elem.value.trim() === '');
     const elemChildren = elem.parentNode.children;
+    if( elemChildren.length > 1 
+              && elemChildren[1].classList.contains("error-msg") ){
+      elemChildren[1].remove();
+    }
     if(isEmpty){
       const elemMsg = document.createElement("SPAN");
       elemMsg.classList.add('error-msg');
       elemMsg.style.fontSize = '11px';
       elemMsg.textContent = 'поле не може бути порожнім';
       elem.parentNode.append(elemMsg);
-    } else if( elemChildren.length > 1 
-              && elemChildren[1].classList.contains("error-msg") ){
-      elemChildren[1].remove();
     }
     return !isEmpty;
 }
