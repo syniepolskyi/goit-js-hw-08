@@ -44,7 +44,7 @@ function validateEmpty(elem){
       const elemMsg = document.createElement("SPAN");
       elemMsg.classList.add('error-msg');
       elemMsg.style.fontSize = '11px';
-      elemMsg.textContent = 'поле не може бути порожнім';
+      elemMsg.textContent = 'This field cannot be empty';
       elem.parentNode.append(elemMsg);
     }
     return !isEmpty;
@@ -87,7 +87,6 @@ form.addEventListener("submit", (ev) => {
       return ;
     }
     clearInputs(ev.currentTarget);
-    alert("Local storage item was removed");
     console.log(storageData);
     localStorage.removeItem("feedback-form-state");
     console.log('localStorage["feedback-form-state"] was removed')
