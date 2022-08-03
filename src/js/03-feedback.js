@@ -60,6 +60,14 @@ function validate(form){
     return allFilled;
 }
 
+function clearInputs(form){
+    const elements = form.elements;
+    const storageData = readStorage();
+    const allFilled = Object.keys(storageData).forEach((key) => {
+      elements[key].value = '';
+    });
+}
+
 function onInput(ev){
     //console.log(ev.target.name, ev.target.value);
     const storageData = readStorage();
@@ -78,7 +86,8 @@ form.addEventListener("submit", (ev) => {
     if(!validate(ev.currentTarget)){
       return ;
     }
-    alert("Local storage item was removed")
+    clearInputs(ev.currentTarget);
+    alert("Local storage item was removed");
     console.log(storageData);
     localStorage.removeItem("feedback-form-state");
     console.log('localStorage["feedback-form-state"] was removed')
